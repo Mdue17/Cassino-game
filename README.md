@@ -47,7 +47,7 @@ WebSockets for real-time gameplay, and a database for storing game states.
 - Multiplayer card game logic
 - Real-time updates using WebSockets
 - REST APIs for game management
-- PostgreSQL/MySQL database integration
+- Post-greSQL/MySQL database integration
 - Secure authentication (future enhancement)
 
 
