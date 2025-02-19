@@ -123,6 +123,13 @@ The goal is to capture cards from the table to score points.
 |---------|--------------------------|--------------------------|
 | POST    | `/game/start`            | Starts a new game        |
 | POST    | `/game/{playerId}/capture` | Capture cards from table |
+| POST    | `/game/{playerId}/build`   | Create a build           |
+| POST    | `/game/{playerId}/play`    | Play a card              |
+| GET     | `/game/{gameId}`          | Get game state           |
+| GET     | `/game/{gameId}/players`  | Get players in the game  |
+| GET     | `/game/{gameId}/table`    | Get cards on the table   |
+| GET     | `/game/{gameId}/winner`   | Get the winner of the game |
+ 
 
 ## WebSocket Support
 - Connect to `/game-websocket`
