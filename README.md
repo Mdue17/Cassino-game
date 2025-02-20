@@ -1,4 +1,5 @@
 ## Architecture
+
 ```
     cassino-game
     │── src
@@ -26,52 +27,54 @@
     │── README.md
 ```
 
-
-
-
 # Cassino Card Game (Spring Boot)
 
 ## Overview
-Cassino is a classic fishing-style card game. 
-This project is a Java-based implementation using **Spring Boot** for the backend, 
+
+Cassino is a classic fishing-style card game.
+This project is a Java-based implementation using **Spring Boot** for the backend,
 WebSockets for real-time gameplay, and a database for storing game states.
 
-
- - Controller Layer → `REST APIs to interact with the frontend.`
- - Service Layer → `Game logic, rules, and player interactions.`
- - Repository Layer →` Handles database interactions for storing game state, player scores, and history.`
- - Entity Layer → `Represents game objects like cards, players, and the game board.`
-
+-   Controller Layer → `REST APIs to interact with the frontend.`
+-   Service Layer → `Game logic, rules, and player interactions.`
+-   Repository Layer →` Handles database interactions for storing game state, player scores, and history.`
+-   Entity Layer → `Represents game objects like cards, players, and the game board.`
 
 ## Features
-- Multiplayer card game logic
-- Real-time updates using WebSockets
-- REST APIs for game management
-- Post-greSQL/MySQL database integration
-- Secure authentication (future enhancement)
 
+-   Multiplayer card game logic
+-   Real-time updates using WebSockets
+-   REST APIs for game management
+-   Post-greSQL/MySQL database integration
+-   Secure authentication (future enhancement)
 
 ## Technologies Used
-- **Java 21**
-- **Spring Boot** (Web, WebSocket, JPA, Validation)
-- **PostgreSQL/MySQL**
-- **Lombok** (for reducing boilerplate code)
-- **Docker** (optional for deployment)
+
+-   **Java 21**
+-   **Spring Boot** (Web, WebSocket, JPA, Validation)
+-   **PostgreSQL/MySQL**
+-   **Lombok** (for reducing boilerplate code)
+-   **Docker** (optional for deployment)
 
 ## Installation & Setup
+
 ### Prerequisites
-- Java 21+
-- Maven
-- PostgreSQL or MySQL
+
+-   Java 21+
+-   Maven
+-   PostgreSQL or MySQL
 
 ### Clone the Repository
+
 ```sh
 git clone git@github.com:mosa-retha/Cassino-game.git
 cd Cassino-game
 ```
 
 ### Configure Database (`application.properties`)
+
 For **PostgreSQL**:
+
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/cassino_db
 spring.datasource.username=postgres
@@ -82,63 +85,82 @@ spring.jpa.show-sql=true
 ```
 
 ### Build and Run the Application
+
 ```sh
 mvn clean install
 mvn spring-boot:run
 ```
 
 ## Cassino Rules
+
 Cassino is a fishing card game where players try to capture cards from the table by matching them with their own.
 
 ### Objective
-The goal is to capture cards from the table to score points.
 
-### Setup
-- 2-4 players
-- A standard 40-card deck
-- Each player is dealt **4 cards**
-- **4 cards** are placed face-up on the table
+Collect as many points as possible by capturing cards with point values.
 
-### Gameplay
-1. **Playing a Card**: On a player's turn, they must play one card from their hand.
-2. **Capturing Cards**:
-    - A card can **capture** if it matches a table card in rank.
-    - Players can also capture by **summing** multiple cards to match the played card.
-    - Face cards can only capture the same rank 
-3. **Building**:
-    - Players may create a "build" by grouping cards into a sum that they intend to capture later.
-    - A build can only be captured by a player who made it unless another player adds to it.
-4. **End of Round**:
-    - Once all cards have been played, the last player to capture wins any remaining table cards.
+#### **Setup**
+
+1. Use a **40-card deck** (remove all Jacks, Queens, and Kings from a standard 52-card deck).
+2. Shuffle the deck and deal **10 cards to each player** (for 2–4 players).
+3. Place the remaining deck aside for the **second half of the game** (this will be used later).
+
+### **Gameplay**
+
+1. Players take turns in clockwise order.
+2. On your turn, you must do one of the following:
+
+    - **Place a card on the table**: Play a card face-up in front of you to start or add to a build.
+    - **Build a number**: Combine cards from your hand to create a build. For example, if you have a 3 and a 4, you can build a 7. You can only build **one numbered combination per turn**.
+    - **Capture built cards**: If you have a card in your hand that matches the value of another player’s build, you can capture that build and add it to your score pile. For example, if a player has built a 7 and you play a 7, you capture their build.
+
+3. **Building Restrictions**:
+
+    - A player **cannot** build a number that is **already being built** by another player.
+
+4. **Captured Cards Rule**:
+
+    - When a player captures cards, **all captured cards are placed face-up in their score pile**.
+    - The **last card** of the captured build can be used to **add to an existing build** but **cannot be used to start a new build**.
+
+5. After placing, building, or capturing, your turn ends, and the next player takes their turn.
 
 ### Scoring
-- **10 of Diamonds** → 2 points
-- **2 of Spades** → 1 point
-- **Each Ace** → 1 point
 
+-   **10 of Diamonds** → 2 points
+-   **2 of Spades** → 1 point
+-   **Each Ace** → 1 point
 
+**Additional Points** (only apply if the player has collected at least 1 point from the normal scoring above):
+
+-   **20 cards collected** → 1 point
+-   **21 cards collected** → 2 points
+-   **5 Spades collected** → 1 point
+-   **6 Spades collected** → 2 points
 
 ## API Endpoints
-| Method  | Endpoint                 | Description              |
-|---------|--------------------------|--------------------------|
-| POST    | `/game/start`            | Starts a new game        |
-| POST    | `/game/{playerId}/capture` | Capture cards from table |
-| POST    | `/game/{playerId}/build`   | Create a build           |
-| POST    | `/game/{playerId}/play`    | Play a card              |
-| GET     | `/game/{gameId}`          | Get game state           |
-| GET     | `/game/{gameId}/players`  | Get players in the game  |
-| GET     | `/game/{gameId}/table`    | Get cards on the table   |
-| GET     | `/game/{gameId}/winner`   | Get the winner of the game |
- 
+
+| Method | Endpoint                   | Description                |
+| ------ | -------------------------- | -------------------------- |
+| POST   | `/game/start`              | Starts a new game          |
+| POST   | `/game/{playerId}/capture` | Capture cards from table   |
+| POST   | `/game/{playerId}/build`   | Create a build             |
+| POST   | `/game/{playerId}/play`    | Play a card                |
+| GET    | `/game/{gameId}`           | Get game state             |
+| GET    | `/game/{gameId}/players`   | Get players in the game    |
+| GET    | `/game/{gameId}/table`     | Get cards on the table     |
+| GET    | `/game/{gameId}/winner`    | Get the winner of the game |
 
 ## WebSocket Support
-- Connect to `/game-websocket`
-- Subscribe to `/topic/game-updates`
+
+-   Connect to `/game-websocket`
+-   Subscribe to `/topic/game-updates`
 
 ## Future Enhancements
-- JWT authentication for secure sessions
-- AI opponents for single-player mode
+
+-   JWT authentication for secure sessions
+-   AI opponents for single-player mode
 
 ## License
-MIT License
 
+MIT License
