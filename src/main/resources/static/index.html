@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Welcome to Cassino Cards | Free Online Game</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/root.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <section class="cover">
+            <header class="active-cover" id="cover">
+                <h1 class="title text-white text-xxl">
+                    CASSINO <span class="text-black">CARD</span>
+                </h1>
+                <h3 class="text-black text-xl opacity-50">FREE ONLINE GAME</h3>
+            </header>
+
+            <div id="menu" class="menu-card">
+                <h1 class="title">Menu</h1>
+                <div class="options">
+                    <div id="open-new-game">New Game</div>
+                    <div id="open-options">Options</div>
+                </div>
+                <h1 id="exit" class="title link text-red text-right">exit</h1>
+            </div>
+
+            <div id="new-game" class="menu-card">
+                <h1 class="title">New Game</h1>
+                <div class="options">
+                    <div>Single Player</div>
+                    <div>Multiplayer</div>
+                </div>
+                <h1
+                    onclick="back()"
+                    class="title link text-red text-right back"
+                >
+                    Back
+                </h1>
+            </div>
+
+            <div id="options" class="menu-card">
+                <h1 class="title">Options</h1>
+                <div class="options">
+                    <div>
+                        Sound FX
+                        <div
+                            id="sound-fx"
+                            class="opt-btn text-uppercase text-md text-red"
+                        >
+                            Off
+                        </div>
+                    </div>
+                    <div>
+                        Music
+                        <div
+                            id="music"
+                            class="opt-btn text-uppercase text-md text-green"
+                        >
+                            ON
+                        </div>
+                    </div>
+                </div>
+                <h1
+                    onclick="back()"
+                    class="title link text-red text-right back"
+                >
+                    Back
+                </h1>
+            </div>
+        </section>
+
+        <script src="js/ui_script.js"></script>
+    </body>
+</html>
