@@ -1,0 +1,100 @@
+@import url("root.css");
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+}
+
+section {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    background: var(--green_gradient);
+}
+
+.cover header {
+    position: absolute;
+    bottom: 70px;
+    left: -100%;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cover .active-cover {
+    left: 70px;
+}
+
+.menu-card {
+    background: var(--white_gradient);
+    color: var(--black);
+
+    position: absolute;
+    width: 500px;
+    height: 705px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    border: 1.25px solid rgb(37, 37, 37, 0.75);
+    border-radius: 50px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+
+    padding: 40px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.active-menu {
+    transform: translate(-50%, -50%) rotateY(0deg);
+    opacity: 1;
+    z-index: 1;
+}
+
+.menu-card .options {
+    color: var(--black);
+    font-size: 55px;
+    font-weight: bold;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-card .options div {
+    position: relative;
+    transition: 0.3s;
+    cursor: pointer;
+    opacity: 0.75;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-card .options div:hover {
+    padding-left: 50px;
+    opacity: 1;
+}
+
+.menu-card .options div:before {
+    position: absolute;
+    content: ">";
+    transition: 0.3s;
+    left: -50px;
+    opacity: 0;
+    transition-delay: 0.15s;
+}
+
+.menu-card .options div:hover::before {
+    left: 0;
+    opacity: 1;
+}

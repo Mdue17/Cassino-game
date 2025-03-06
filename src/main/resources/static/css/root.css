@@ -1,0 +1,95 @@
+:root {
+    --black_gradient: linear-gradient(90deg, #8c8c8c, #252525);
+    --red_gradient: linear-gradient(90deg, #fe5b5b, #e20000);
+    --green_gradient: linear-gradient(-135deg, #12782c, #305e3b);
+    --white_gradient: linear-gradient(90deg, #ffffff, #f4f4f4);
+    --black: #252525;
+    --red: #e20000;
+    --green: #12782c;
+    --white: #f4f4f4;
+}
+
+.text-black {
+    color: var(--black);
+}
+
+.text-red {
+    color: var(--red);
+}
+
+.text-green {
+    color: var(--green);
+}
+
+.text-white {
+    color: var(--white);
+}
+
+.text-xs {
+    font-size: 12px;
+}
+
+.text-sm {
+    font-size: 16px;
+}
+
+.text-md {
+    font-size: 24px;
+}
+
+.text-lg {
+    font-size: 32px;
+}
+
+.text-xl {
+    font-size: 40px;
+}
+
+.text-xxl {
+    font-size: 64px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.opacity-10 {
+    opacity: 0.1;
+}
+
+.opacity-25 {
+    opacity: 0.25;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}
+
+.title {
+    font-size: 64px;
+    text-transform: uppercase;
+}
+
+.link {
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.link:hover {
+    transition: 0.2s;
+    opacity: 0.75;
+}
+
+
